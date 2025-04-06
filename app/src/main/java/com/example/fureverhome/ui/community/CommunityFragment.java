@@ -1,4 +1,4 @@
-package com.example.fureverhome.ui.dashboard;
+package com.example.fureverhome.ui.community;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,19 +8,19 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.fureverhome.databinding.FragmentDashboardBinding;
+import com.example.fureverhome.databinding.FragmentCommunityBinding;
 
-public class DashboardFragment extends Fragment {
+public class CommunityFragment extends Fragment {
 
-    private FragmentDashboardBinding binding;
+    private FragmentCommunityBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentCommunityBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        // UI interaction
+        // Example UI interaction
         binding.getRoot().setOnClickListener(v ->
                 v.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS)
         );

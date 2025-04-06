@@ -1,11 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="md_theme_light_primary">#6750A4</color>
+    <!-- Primary -->
+    <color name="md_theme_light_primary">#B8A5C9</color>
     <color name="md_theme_light_onPrimary">#FFFFFF</color>
-    <color name="md_theme_light_secondary">#625B71</color>
-    <color name="md_theme_light_onSecondary">#FFFFFF</color>
-    <color name="md_theme_light_background">#FFFBFE</color>
-    <color name="md_theme_light_onBackground">#1C1B1F</color>
-    <color name="md_theme_light_surface">#FFFBFE</color>
-    <color name="md_theme_light_onSurface">#1C1B1F</color>
+
+    <!-- Secondary -->
+    <color name="md_theme_light_secondary">#CBBCCF</color>
+    <color name="md_theme_light_onSecondary">#403843</color>
+
+    <!-- Background -->
+    <color name="md_theme_light_background">#F6F4F9</color>
+    <color name="md_theme_light_onBackground">#2D2B30</color>
+
+    <!-- Surface -->
+    <color name="md_theme_light_surface">#EDE9F2</color>
+    <color name="md_theme_light_onSurface">#332F37</color>
+
+    <!-- Error -->
+    <color name="md_theme_light_error">#DDA6A1</color>
+    <color name="md_theme_light_onError">#FFFFFF</color>
+
+    <!-- Outline -->
+    <color name="md_theme_light_outline">#A89AB3</color>
 </resources>
