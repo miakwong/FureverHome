@@ -1,5 +1,7 @@
 package com.example.fureverhome.ui.tasks;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,27 +18,35 @@ import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
-    private List<Task> taskList;
+    private final List<Task> taskList;
+    private final Context context;
 
-    public TaskAdapter(List<Task> taskList) {
+    public TaskAdapter(List<Task> taskList, Context context) {
         this.taskList = taskList;
+        this.context = context;
     }
 
     @NonNull
     @Override
     public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.task_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_item, parent, false);
         return new TaskViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         Task task = taskList.get(position);
-        holder.title.setText(task.title);
-        holder.location.setText(task.location);
-        holder.time.setText(task.time);
-        holder.image.setImageResource(task.imageResId);
+        holder.title.setText(task.getTitle());
+        holder.location.setText(task.getLocation());
+        holder.time.setText(task.getTime());
+        holder.icon.setImageResource(task.getImageResId());
+
+        //Click arrow to details page
+        holder.arrow.setOnClickListener(v -> {
+            Intent intent = new Intent(context, TaskDetailsActivity.class);
+            intent.putExtra("task", task);
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -44,22 +54,25 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         return taskList.size();
     }
 
-    //Update data
-    public void updateList(List<Task> newList) {
-        this.taskList = newList;
-        notifyDataSetChanged();
-    }
-
     static class TaskViewHolder extends RecyclerView.ViewHolder {
         TextView title, location, time;
-        ImageView image;
+        ImageView icon, arrow;
 
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.taskTitle);
             location = itemView.findViewById(R.id.taskLocation);
             time = itemView.findViewById(R.id.taskTime);
-            image = itemView.findViewById(R.id.taskImage);
+            icon = itemView.findViewById(R.id.taskImage);
+            arrow = itemView.findViewById(R.id.taskArrow);
         }
     }
+
+    //Method to update the list
+    public void updateTaskList(List<Task> newTaskList) {
+        taskList.clear();
+        taskList.addAll(newTaskList);
+        notifyDataSetChanged(); //Notify the adapter to refresh the data
+    }
+
 }
