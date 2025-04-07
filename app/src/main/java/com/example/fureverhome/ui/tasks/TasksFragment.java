@@ -9,8 +9,8 @@ import android.widget.RadioGroup;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
-import androidx.appcompat.app.AlertDialog;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,9 +18,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fureverhome.R;
 import com.example.fureverhome.model.Task;
+import com.example.fureverhome.model.TaskUtils;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 
 public class TasksFragment extends Fragment {
 
@@ -102,46 +103,8 @@ public class TasksFragment extends Fragment {
         recyclerView = root.findViewById(R.id.volunteerTasksRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        // Initialize task list
-        taskList.add(new Task(
-                "Foster a Kitten",
-                "Downtown Shelter",
-                "2024/03/10 2 PM",
-                R.drawable.ic_pet,
-                "Foster Care",
-                "2024/03/01",
-                "2024/03/10",
-                "2024/04/01",
-                "3 Weeks",
-                "Happy Paws Shelter",
-                "Kitten has received vaccines.\nNeeds feeding twice a day.\nClean litter box daily.\nAdoptable after 3 weeks."
-        ));
-        taskList.add(new Task(
-                "Transport a Dog",
-                "Rutland → Foster Home",
-                "2024/04/15 4 PM",
-                R.drawable.ic_dog,
-                "Animal Transport",
-                "2024/04/01",
-                "2024/04/15",
-                "2024/04/15",
-                "Same Day",
-                "Kelowna Rescue Group",
-                "Pick up from shelter in Rutland.\nDeliver to foster family 15km away.\nDog is anxious, needs gentle handling."
-        ));
-        taskList.add(new Task(
-                "Help at Adoption Event",
-                "BC SPCA",
-                "2024/04/10 10 AM",
-                R.drawable.ic_pet_supplies,
-                "Event Assistance",
-                "2024/03/28",
-                "2024/04/10",
-                "2024/04/10",
-                "1 Day",
-                "BC SPCA",
-                "Assist with setting up tables, welcoming guests.\nAnswer basic questions about animals.\nGreat social opportunity!"
-        ));
+        // Use TaskUtils to load the tasks
+        taskList = TaskUtils.loadTasks();
 
         // Save the original list of tasks
         allTaskList.addAll(taskList);
@@ -152,6 +115,7 @@ public class TasksFragment extends Fragment {
         return root;
     }
 
+    // Filter tasks by type
     private void filterTasksByType(String taskType) {
         List<Task> filteredList = new ArrayList<>();
 
@@ -173,6 +137,7 @@ public class TasksFragment extends Fragment {
         }
     }
 
+    // Reset to show all tasks
     private void resetFilters() {
         // Reset filters, show all tasks
         List<Task> resetList = new ArrayList<>(allTaskList);  // Make sure taskList is not modified by filters
@@ -183,5 +148,4 @@ public class TasksFragment extends Fragment {
             adapter.updateTaskList(resetList);  // Reset to original task list
         }
     }
-
 }

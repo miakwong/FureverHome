@@ -7,10 +7,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.example.fureverhome.R;
 import com.example.fureverhome.model.Task;
+import com.example.fureverhome.model.TaskUtils;
+
+import java.util.List;
 
 public class TaskDetailsActivity extends AppCompatActivity {
 
@@ -26,16 +28,8 @@ public class TaskDetailsActivity extends AppCompatActivity {
 
         // Bind views
         ImageView backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(v -> finish()); // Go back to previous screen
 
-        // Set back button click listener
-        backButton.setOnClickListener(v -> {
-            finish();  // This will simulate the back press
-        });
-
-        //Get task item
-        Task task = (Task) getIntent().getSerializableExtra("task");
-
-        //Bind views
         taskIcon = findViewById(R.id.taskIcon);
         titleText = findViewById(R.id.titleText);
         typeText = findViewById(R.id.typeText);
@@ -48,7 +42,15 @@ public class TaskDetailsActivity extends AppCompatActivity {
         descriptionText = findViewById(R.id.descriptionText);
         applyBtn = findViewById(R.id.applyButton);
 
-        //task data
+        // Get taskId from the Intent
+        String taskId = getIntent().getStringExtra("taskId");
+
+        // Load tasks (using TaskUtils)
+        List<Task> allTasks = TaskUtils.loadTasks();
+
+        // Find the task by ID
+        Task task = TaskUtils.getTaskById(allTasks, taskId);
+
         if (task != null) {
             taskIcon.setImageResource(task.getImageResId());
             titleText.setText(task.getTitle());

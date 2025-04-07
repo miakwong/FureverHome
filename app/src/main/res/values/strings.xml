@@ -33,4 +33,26 @@
 
     <!-- fragment task -->
     <string name="open_filter_dialog">Open Filter Dialog</string>
+
+    <!-- volunteer dashboard Section -->
+    <string name="user_name">John</string>
+    <string name="user_avatar_description">User avatar</string>
+    <string name="my_tasks_title">My Tasks</string>
+    <string name="task_1_title">Foster Care</string>
+    <string name="task_1_status">In Progress</string>
+    <string name="task_2_title">Adoption Event Helper</string>
+    <string name="task_2_status">Completed</string>
+    <string name="task_3_title">Animal Transport</string>
+    <string name="task_3_status">Pending</string>
+    <string name="feedback_title">Feedback &amp; Trust Score</string>
+    <string name="trust_score">Trust Score: 4.8 / 5</string>
+    <string name="feedback_value">Feedback: You’re doing great!</string>
+    <string name="notification_title">Notification</string>
+    <string name="notification_switch_text">Enable Task Reminders</string>
+    <string name="upcoming_reminder">Upcoming Task Reminder:</string>
+    <string name="task_details_link">Task details link</string>
+    <string name="task_icon_description">Icon representing a task</string>
+    <string name="toggle_arrow_description">Toggle visibility of section</string>
+    <string name="feedback_icon_description">Icon representing feedback</string>
+
 </resources>
