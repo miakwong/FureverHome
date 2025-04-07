@@ -6,10 +6,9 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- Search -->
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/shelterDashboardHeader"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:queryHint="Search Tasks..."
         app:layout_constraintTop_toTopOf="parent"
