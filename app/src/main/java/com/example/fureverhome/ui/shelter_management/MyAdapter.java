@@ -45,7 +45,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         if (!animal.getImageList().isEmpty()) {
             holder.imageView.setImageResource(animal.getImageList().get(0));
         } else {
-            holder.imageView.setImageResource(R.drawable.imageplaceholder); // fallback image if list is empty
+            holder.imageView.setImageResource(R.drawable.ic_imageplaceholder); // fallback image if list is empty
         }
 
 
