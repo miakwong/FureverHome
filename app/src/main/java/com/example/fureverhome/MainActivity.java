@@ -1,8 +1,12 @@
 package com.example.fureverhome;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fureverhome.ui.shelter_management.AnimalListings;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.navigation.NavController;
@@ -44,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+    }
+
+    public void launchAnimalListings(View v){
+        Intent i = new Intent(this, AnimalListings.class);
+        startActivity(i);
     }
 
     @Override
