@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.fureverhome.databinding.FragmentDashboardBinding;
+import android.content.Intent;
+import com.example.fureverhome.AnimalListings;
 
 public class DashboardFragment extends Fragment {
 
@@ -33,4 +35,6 @@ public class DashboardFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+
 }
