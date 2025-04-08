@@ -38,7 +38,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         holder.genderView.setText(animal.getGender());
         holder.locationView.setText(animal.getLocation());
         holder.statusView.setText(animal.getStatus());
-        holder.imageView.setImageResource(animal.getImage());
+
+        // setting image
+        if (!animal.getImageList().isEmpty()) {
+            holder.imageView.setImageResource(animal.getImageList().get(0));
+        } else {
+            holder.imageView.setImageResource(R.drawable.imageplaceholder); // fallback image if list is empty
+        }
+
 
         // View button
         holder.viewButton.setOnClickListener(v -> {
