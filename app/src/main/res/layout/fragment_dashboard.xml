@@ -3,28 +3,117 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:onClick="launchAnimalListings">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <Button
+        android:id="@+id/btn_shelter"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="24dp">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:text="I'm a Shelter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
-            android:id="@+id/btn_shelter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="I'm a Shelter" />
+    <Button
+        android:id="@+id/btn_volunteer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:text="I'm a Volunteer"
+        app:layout_constraintBottom_toTopOf="@+id/btn_shelter"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <Button
-            android:id="@+id/btn_volunteer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="I'm a Volunteer"
-            android:layout_marginTop="16dp" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/shelterDashboardHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Shelter Dashboard"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/shelterStatsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Shelter Stats"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.129"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shelterDashboardHeader" />
 
+    <TextView
+        android:id="@+id/numberAdoptedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Number Adopted: 361"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.732"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shelterDashboardHeader" />
+
+    <TextView
+        android:id="@+id/numberFosteredText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Number Fostered: 270"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="@+id/numberAdoptedText"
+        app:layout_constraintTop_toBottomOf="@+id/numberAdoptedText" />
+
+    <TextView
+        android:id="@+id/NumberPendingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Number Pending: 17"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="@+id/numberFosteredText"
+        app:layout_constraintTop_toBottomOf="@+id/numberFosteredText" />
+
+    <TextView
+        android:id="@+id/numberAvailableText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Number Available: 152"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="@+id/NumberPendingText"
+        app:layout_constraintTop_toBottomOf="@+id/NumberPendingText" />
+
+    <Button
+        android:id="@+id/addAnimalButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:text="Add Animal"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numberAvailableText" />
+
+    <Button
+        android:id="@+id/viewListingsButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:onClick="launchAnimalListings"
+        android:text="View Listings"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addAnimalButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

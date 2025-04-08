@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/filter_species" android:title="Species" android:checkable="true" />
+    <item android:id="@+id/filter_breed" android:title="Breed" android:checkable="true" />
+    <item android:id="@+id/filter_age" android:title="Age" android:checkable="true" />
+    <item android:id="@+id/filter_size" android:title="Size" android:checkable="true" />
+    <item android:id="@+id/filter_colour" android:title="Colour" android:checkable="true" />
+    <item android:id="@+id/filter_gender" android:title="Gender" android:checkable="true" />
+    <item android:id="@+id/filter_location" android:title="Location" android:checkable="true" />
+    <item android:id="@+id/filter_status" android:title="Status" android:checkable="true" />
+</menu>

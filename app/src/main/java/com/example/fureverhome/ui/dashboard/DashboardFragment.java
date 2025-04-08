@@ -11,6 +11,8 @@ import androidx.navigation.Navigation;
 
 import com.example.fureverhome.R;
 import com.example.fureverhome.databinding.FragmentDashboardBinding;
+import android.content.Intent;
+import com.example.fureverhome.AnimalListings;
 
 public class DashboardFragment extends Fragment {
 
@@ -37,4 +39,6 @@ public class DashboardFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+
 }
