@@ -1,6 +1,118 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Filters"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingBottom="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!-- Species Filters -->
+        <TextView android:text="Species" style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_species_dog" android:text="Dog"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_species_cat" android:text="Cat"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_species_bird" android:text="Bird"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_species_reptile" android:text="Reptile"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_species_rodent" android:text="Rodent"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_species_horse" android:text="Farm Animal"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_species_other" android:text="Other"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+        <!-- Age Filters -->
+        <TextView android:text="Age" style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_under_1" android:text="0-1"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_2_to_4" android:text="2-4"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_5_to_8" android:text="5-8"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_9_or_more" android:text="9+"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+        <!-- Size Filters -->
+        <TextView android:text="Size" style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_large" android:text="Large"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_medium" android:text="Medium"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_small" android:text="Small"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+        <!-- Colour Filters -->
+        <TextView android:text="Colour" style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_black" android:text="Black"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_white" android:text="White"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_brown" android:text="Brown"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_red" android:text="Red"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_blue" android:text="Blue"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_green" android:text="Green"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_silver" android:text="Silver"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_colour_other" android:text="Other"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+        <!-- Gender Filters -->
+        <TextView android:text="Gender" style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_male" android:text="Male"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_female" android:text="Female"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_unknown" android:text="Unknown"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+        <!-- Location Filters -->
+        <TextView android:text="Location" style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_KelownaSPCA" android:text="Kelowna SPCA"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_PentictonSPCA" android:text="Penticton SPCA"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_VernonSPCA" android:text="Vernon SPCA"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+        <!-- Status Filters -->
+        <TextView android:text="Status" style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_Available" android:text="Available"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_Pending" android:text="Pending"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <CheckBox android:id="@+id/filter_Adopted" android:text="Adopted"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/applyFiltersButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Apply Filters"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="8dp"/>
+
+    </LinearLayout>
+</ScrollView>
