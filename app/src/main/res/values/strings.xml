@@ -2,5 +2,57 @@
     <string name="app_name">FureverHome</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <!-- Title Section -->
+    <string name="back_button_description">Back</string>
+    <string name="title_text">Foster a Kitten</string>
+
+    <!-- Task Details Section -->
+    <string name="type_label">Type: </string>
+    <string name="posted_date_label">Posted Date: </string>
+    <string name="start_date_label">Start Date: </string>
+    <string name="end_date_label">End Date: </string>
+    <string name="duration_label">Duration: </string>
+    <string name="location_label">Location: </string>
+    <string name="organizer_label">Organizer: </string>
+
+    <!-- Description Section -->
+    <string name="description_label">Description:</string>
+
+    <!-- Button Section -->
+    <string name="apply_button_text">Apply Now</string>
+
+    <!-- Text for the corresponding task details -->
+    <string name="task_type_value">Foster Care</string>
+    <string name="posted_date_value">2024/03/01</string>
+    <string name="start_date_value">2024/03/10</string>
+    <string name="end_date_value">2024/04/01</string>
+    <string name="duration_value">3 Weeks</string>
+    <string name="location_value">Downtown Shelter</string>
+    <string name="organizer_value">Happy Paws Shelter</string>
+    <string name="description_value">Kitten has received vaccines.\nNeeds feeding twice a day.\nClean litter box daily.\nAdoptable after 3 weeks.</string>
+
+    <!-- fragment task -->
+    <string name="open_filter_dialog">Open Filter Dialog</string>
+
+    <!-- volunteer dashboard Section -->
+    <string name="user_name">John</string>
+    <string name="user_avatar_description">User avatar</string>
+    <string name="my_tasks_title">My Tasks</string>
+    <string name="task_1_title">Foster Care</string>
+    <string name="task_1_status">In Progress</string>
+    <string name="task_2_title">Adoption Event Helper</string>
+    <string name="task_2_status">Completed</string>
+    <string name="task_3_title">Animal Transport</string>
+    <string name="task_3_status">Pending</string>
+    <string name="feedback_title">Feedback &amp; Trust Score</string>
+    <string name="trust_score">Trust Score: 4.8 / 5</string>
+    <string name="feedback_value">Feedback: You’re doing great!</string>
+    <string name="notification_title">Notification</string>
+    <string name="notification_switch_text">Enable Task Reminders</string>
+    <string name="upcoming_reminder">Upcoming Task Reminder:</string>
+    <string name="task_details_link">Task details link</string>
+    <string name="task_icon_description">Icon representing a task</string>
+    <string name="toggle_arrow_description">Toggle visibility of section</string>
+    <string name="feedback_icon_description">Icon representing feedback</string>
+
 </resources>

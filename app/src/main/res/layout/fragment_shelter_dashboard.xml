@@ -3,28 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:onClick="launchAnimalListings">
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="24dp">
-
-    <Button
-        android:id="@+id/btn_shelter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="I'm a Shelter" />
-
-    <Button
-        android:id="@+id/btn_volunteer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="I'm a Volunteer"
-        android:layout_marginTop="16dp"
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/shelterDashboardHeader"
@@ -109,7 +88,6 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:onClick="launchAnimalListings"
         android:text="View Listings"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="parent"

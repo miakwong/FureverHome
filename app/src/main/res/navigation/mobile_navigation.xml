@@ -28,6 +28,25 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.fureverhome.ui.dashboard.DashboardFragment"
-        android:label="Profile"
-        tools:layout="@layout/fragment_dashboard" />
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashboard">
+
+        <action
+            android:id="@+id/action_dashboard_to_shelterDashboard"
+            app:destination="@id/shelterDashboard" />
+
+        <action
+            android:id="@+id/action_dashboard_to_volunteerDashboard"
+            app:destination="@id/volunteerDashboard" />
+    </fragment>
+    <fragment
+        android:id="@+id/shelterDashboard"
+        android:name="com.example.fureverhome.ui.dashboard.ShelterDashboardFragment"
+        android:label="Shelter Dashboard"
+        tools:layout="@layout/fragment_shelter_dashboard" />
+    <fragment
+        android:id="@+id/volunteerDashboard"
+        android:name="com.example.fureverhome.ui.dashboard.VolunteerDashboardFragment"
+        android:label="Volunteer Dashboard"
+        tools:layout="@layout/fragment_volunteer_dashboard" />
 </navigation>
