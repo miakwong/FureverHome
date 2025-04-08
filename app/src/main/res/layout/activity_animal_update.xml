@@ -10,89 +10,99 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Name -->
-        <EditText
-            android:id="@+id/editName"
+        <!-- Image Drop Area -->
+        <FrameLayout
+            android:id="@+id/imageDropArea"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Name"
-            android:textSize="24sp" />
+            android:layout_height="150dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginBottom="12dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
 
-        <!-- Species -->
-        <EditText
-            android:id="@+id/editSpecies"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Species"
-            android:textSize="24sp" />
+            <TextView
+                android:id="@+id/dropAreaLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Drag and drop or tap to add up to 10 images"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"/>
+        </FrameLayout>
 
-        <!-- Breed -->
-        <EditText
-            android:id="@+id/editBreed"
+        <!-- Image Scroll Preview Area -->
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Breed"
-            android:textSize="24sp" />
+            android:layout_height="120dp"
+            android:layout_marginBottom="16dp"
+            android:scrollbars="none">
 
-        <!-- Age -->
-        <EditText
-            android:id="@+id/editAge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Age"
-            android:inputType="number"
-            android:textSize="24sp" />
+            <LinearLayout
+                android:id="@+id/imagePreviewContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp" />
+        </HorizontalScrollView>
 
-        <!-- Size -->
-        <EditText
-            android:id="@+id/editSize"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Size"
-            android:textSize="24sp" />
+        <!-- Labeled Editable Fields -->
+        <TextView android:text="Name:" android:textStyle="bold"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <EditText android:id="@+id/editName" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="20sp" />
 
-        <!-- Gender -->
-        <EditText
-            android:id="@+id/editGender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Gender"
-            android:textSize="24sp" />
+        <TextView android:text="Species:" android:textStyle="bold"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <EditText android:id="@+id/editSpecies" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="20sp" />
 
-        <!-- Location -->
-        <EditText
-            android:id="@+id/editLocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Location"
-            android:textSize="24sp" />
+        <TextView android:text="Breed:" android:textStyle="bold"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <EditText android:id="@+id/editBreed" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="20sp" />
 
-        <!-- Status -->
-        <EditText
-            android:id="@+id/editStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Status"
-            android:textSize="24sp" />
+        <TextView android:text="Age:" android:textStyle="bold"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <EditText android:id="@+id/editAge" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:inputType="number"
+            android:textSize="20sp" />
 
-        <!-- Description -->
-        <EditText
-            android:id="@+id/editDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:hint="Description"
-            android:minLines="4"
-            android:textSize="24sp" />
+        <TextView android:text="Size:" android:textStyle="bold"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <EditText android:id="@+id/editSize" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="20sp" />
+
+        <TextView android:text="Gender:" android:textStyle="bold"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <EditText android:id="@+id/editGender" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="20sp" />
+
+        <TextView android:text="Location:" android:textStyle="bold"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <EditText android:id="@+id/editLocation" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="20sp" />
+
+        <TextView android:text="Status:" android:textStyle="bold"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <EditText android:id="@+id/editStatus" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="18sp"/>
+
+        <TextView android:text="Description:" android:textStyle="bold"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <EditText android:id="@+id/editDescription" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:minLines="4"
+            android:gravity="top" android:textSize="18sp"/>
 
         <!-- Save Button -->
         <Button
             android:id="@+id/saveButton"
-            android:text="Save Changes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:layout_marginTop="24dp"
-            android:layout_gravity="end" />
-
+            android:text="Save Changes" />
     </LinearLayout>
 </ScrollView>

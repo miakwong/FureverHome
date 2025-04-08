@@ -41,6 +41,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         holder.locationView.setText(animal.getLocation());
         holder.statusView.setText(animal.getStatus());
 
+        holder.updateButton.setOnClickListener(v -> {
+            if (updateClickListener != null) {
+                updateClickListener.onUpdateClick(animal);
+            }
+        });
+
+
         // setting image
         if (!animal.getImageList().isEmpty()) {
             holder.imageView.setImageResource(animal.getImageList().get(0));
@@ -59,11 +66,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
         // Update button
         holder.updateButton.setOnClickListener(v -> {
-            Intent intent = new Intent(context, AnimalUpdateActivity.class);
-            intent.putExtra("animal", animal);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
+            if (updateClickListener != null) {
+                updateClickListener.onUpdateClick(animal);
+            }
         });
+
     }
 
     @Override
@@ -76,4 +83,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         this.animals = filteredList;
         notifyDataSetChanged();
     }
+
+    public interface OnUpdateClickListener {
+        void onUpdateClick(Animal animal);
+    }
+
+    private OnUpdateClickListener updateClickListener;
+
+    public void setOnUpdateClickListener(OnUpdateClickListener listener) {
+        this.updateClickListener = listener;
+    }
+
 }
