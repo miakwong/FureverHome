@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainScroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,6 +12,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- Back and Update Buttons -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="end">
+
+            <Button
+                android:id="@+id/backButton"
+                android:layout_width="110dp"
+                android:layout_height="48dp"
+                android:text="Back"
+                app:layout_constraintEnd_toStartOf="@+id/updateButton"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/updateButton"
+                android:layout_width="121dp"
+                android:layout_height="48dp"
+                android:text="Update"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <!-- Carousel -->
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/imageCarousel"
@@ -18,54 +47,34 @@
             android:layout_height="250dp"
             android:layout_marginBottom="16dp" />
 
-        <!-- Pet Information -->
+        <!-- Pet Info -->
         <TextView
             android:id="@+id/name"
             style="@style/TextAppearance.AppCompat.Large"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="48sp" />
 
-        <TextView
-            android:id="@+id/species"
-            style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <TextView android:id="@+id/species" style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent" android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/breed"
-            style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <TextView android:id="@+id/breed" style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent" android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/size"
-            style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <TextView android:id="@+id/size" style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent" android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/age"
-            style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <TextView android:id="@+id/age" style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent" android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/gender"
-            style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <TextView android:id="@+id/gender" style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent" android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/location"
-            style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <TextView android:id="@+id/location" style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent" android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/status"
-            style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <TextView android:id="@+id/status" style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent" android:layout_height="wrap_content" />
 
         <!-- Description -->
         <TextView
@@ -84,5 +93,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp" />
 
-    </LinearLayout>
+
+</LinearLayout>
 </androidx.core.widget.NestedScrollView>

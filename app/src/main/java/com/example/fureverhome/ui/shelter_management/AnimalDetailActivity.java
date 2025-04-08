@@ -1,6 +1,8 @@
 package com.example.fureverhome.ui.shelter_management;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -47,5 +49,19 @@ public class AnimalDetailActivity extends AppCompatActivity {
             ((TextView) findViewById(R.id.status)).setText("Status: " + animal.getStatus());
             ((TextView) findViewById(R.id.description)).setText(animal.getDescription());
         }
+
+        Button backButton = findViewById(R.id.backButton);
+        Button updateButton = findViewById(R.id.updateButton);
+
+        // Go back to listings
+        backButton.setOnClickListener(v -> finish()); // or navigate explicitly
+
+        // Go to update screen
+        updateButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AnimalUpdateActivity.class);
+            intent.putExtra("animal", animal); // pass animal again
+            startActivity(intent);
+        });
+
     }
 }
