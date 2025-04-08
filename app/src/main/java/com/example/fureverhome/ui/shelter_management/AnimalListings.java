@@ -79,13 +79,13 @@ public class AnimalListings extends AppCompatActivity {
 
         // Example animals
         animalList.add(new Animal("Larry", "Lizard", "Chinese Water Dragon", "Green", "Large", 5,
-                "Male", List.of(R.drawable.larry), "Kelowna SPCA", "Available", "A playful and curious lizard."));
-        animalList.add(new Animal("Molly", "Dog", "Golden Retriever", "Yellow", "Large", 2, "Female", List.of(R.drawable.molly), "Kelowna SPCA", "Pending", "An adorable girl"));
-        animalList.add(new Animal("Bentley", "Cat", "short hair mix", "Grey and White", "Medium", 7, "Male", List.of(R.drawable.bentley), "Peachland SPCA", "Adopted", "A playful young man"));
-        animalList.add(new Animal("Poppy", "Snake", "Ball Python", "Brown and Black", "Medium", 14, "Female", List.of(R.drawable.poppy), "Vernon SPCA", "Adopted", "An adventurous spirit"));
-        animalList.add(new Animal("rocky", "Dog", "Golden Retriever", "Yellow", "Large", 0, "Male",List.of(R.drawable.rocky), "Vernon SPCA", "Available", "Playful and rambunctious"));
-        animalList.add(new Animal("Sunny", "Horse", "Thoroughbred", "Red", "Large", 3, "Male", List.of(R.drawable.sunny), "Kelowna Farm Rescue", "Available", "Calm and steady. Great for kids"));
-        animalList.add(new Animal("Tux", "Cat", "short hair mix", "Black and White", "Medium", 1, "Male", List.of(R.drawable.tux), "Vernon SPCA", "Pending", "Will make friends with your neighbours too"));
+                "Male", List.of(R.drawable.ic_larry), "Kelowna SPCA", "Available", "A playful and curious lizard."));
+        animalList.add(new Animal("Molly", "Dog", "Golden Retriever", "Yellow", "Large", 2, "Female", List.of(R.drawable.ic_molly), "Kelowna SPCA", "Pending", "An adorable girl"));
+        animalList.add(new Animal("Bentley", "Cat", "short hair mix", "Grey and White", "Medium", 7, "Male", List.of(R.drawable.ic_bentley), "Peachland SPCA", "Adopted", "A playful young man"));
+        animalList.add(new Animal("Poppy", "Snake", "Ball Python", "Brown and Black", "Medium", 14, "Female", List.of(R.drawable.ic_poppy), "Vernon SPCA", "Adopted", "An adventurous spirit"));
+        animalList.add(new Animal("rocky", "Dog", "Golden Retriever", "Yellow", "Large", 0, "Male",List.of(R.drawable.ic_rocky), "Vernon SPCA", "Available", "Playful and rambunctious"));
+        animalList.add(new Animal("Sunny", "Horse", "Thoroughbred", "Red", "Large", 3, "Male", List.of(R.drawable.ic_sunny), "Kelowna Farm Rescue", "Available", "Calm and steady. Great for kids"));
+        animalList.add(new Animal("Tux", "Cat", "short hair mix", "Black and White", "Medium", 1, "Male", List.of(R.drawable.ic_tux), "Vernon SPCA", "Pending", "Will make friends with your neighbours too"));
 
         filteredList.addAll(animalList);
         adapter = new MyAdapter(getApplicationContext(), filteredList);
