@@ -49,6 +49,7 @@ public class AnimalListings extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MyAdapter(getApplicationContext(), filteredList);
         recyclerView.setAdapter(adapter);
+        recyclerView.setVerticalScrollBarEnabled(true);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
