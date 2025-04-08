@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_marginBottom="20dp"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
     tools:context=".AnimalListings">
 
 
@@ -26,7 +26,7 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:text="Name"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
@@ -195,10 +195,10 @@
         android:layout_marginTop="10dp"
         android:text="Status"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="@+id/name"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.587"
         app:layout_constraintStart_toEndOf="@+id/name"
-        app:layout_constraintTop_toTopOf="@+id/name" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/viewButton"

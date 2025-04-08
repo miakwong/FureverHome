@@ -6,25 +6,25 @@
     android:layout_height="match_parent"
     android:onClick="launchAnimalListings">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="24dp">
-
     <Button
         android:id="@+id/btn_shelter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="I'm a Shelter" />
+        android:layout_marginBottom="28dp"
+        android:text="I'm a Shelter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_volunteer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
         android:text="I'm a Volunteer"
-        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_shelter"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/shelterDashboardHeader"
