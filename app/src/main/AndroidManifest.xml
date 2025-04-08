@@ -13,15 +13,6 @@
         android:theme="@style/Theme.FureverHome"
         tools:targetApi="31">
         <activity
-            android:name=".AnimalUpdateActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AnimalDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AnimalListings"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name">

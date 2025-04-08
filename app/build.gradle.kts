@@ -44,8 +44,6 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     implementation("com.google.android.material:material:1.11.0")
-    implementation ("androidx.recyclerview:recyclerview:1.1.0")
-    implementation(libs.activity)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

@@ -1,9 +1,6 @@
 package com.example.fureverhome;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.appbar.MaterialToolbar;
@@ -47,11 +44,6 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-    }
-
-    public void launchAnimalListings(View v){
-        Intent i = new Intent(this, AnimalListings.class);
-        startActivity(i);
     }
 
     @Override
