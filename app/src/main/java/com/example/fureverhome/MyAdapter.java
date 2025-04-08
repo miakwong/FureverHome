@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
+
+public class MyAdapter extends RecyclerView.Adapter<MyViewHolder>{
     Context context;
     List<Animal> animals;
 
