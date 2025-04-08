@@ -10,10 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-
-public class MyAdapter extends RecyclerView.Adapter<MyViewHolder>{
-    Context context;
-    List<Animal> animals;
+public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
+    private final Context context;
+    private List<Animal> animals;
 
     public MyAdapter(Context context, List<Animal> animals) {
         this.context = context;
@@ -41,18 +40,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder>{
         holder.statusView.setText(animal.getStatus());
         holder.imageView.setImageResource(animal.getImage());
 
-        // Handle View button click
+        // View button
         holder.viewButton.setOnClickListener(v -> {
             Intent intent = new Intent(context, AnimalDetailActivity.class);
-            intent.putExtra("animal", animal); // FIXED
+            intent.putExtra("animal", animal); // Ensure Animal implements Serializable
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
         });
 
-        // Handle Update button click
+        // Update button
         holder.updateButton.setOnClickListener(v -> {
             Intent intent = new Intent(context, AnimalUpdateActivity.class);
-            intent.putExtra("animal", animal); // FIXED
+            intent.putExtra("animal", animal);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
         });
@@ -60,12 +59,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder>{
 
     @Override
     public int getItemCount() {
-        return animals.size();
+        return animals != null ? animals.size() : 0;
     }
 
+    // Called when filters are applied
     public void setFilteredList(List<Animal> filteredList) {
         this.animals = filteredList;
         notifyDataSetChanged();
     }
-
 }
