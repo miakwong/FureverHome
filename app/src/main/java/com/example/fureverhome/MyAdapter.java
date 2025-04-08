@@ -62,4 +62,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder>{
     public int getItemCount() {
         return animals.size();
     }
+
+    public void setFilteredList(List<Animal> filteredList) {
+        this.animals = filteredList;
+        notifyDataSetChanged();
+    }
+
 }
