@@ -202,5 +202,53 @@
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
         </LinearLayout>
+
+        <!-- Notification Section -->
+        <LinearLayout
+            android:id="@+id/notificationSection"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <!-- Header with Icon -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:background="@color/md_theme_light_surface"
+                android:clickable="true"
+                android:focusable="true">
+
+                <!-- Notification Icon -->
+                <ImageView
+                    android:id="@+id/notificationIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_notification"
+                    android:contentDescription="@string/notification_icon_description"
+                    app:tint="@color/md_theme_light_onSurface" />
+
+                <!-- Notification Title -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/notification_title"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <!-- Switch notification -->
+                <Switch
+                    android:id="@+id/notificationSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -24,13 +25,26 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class TasksFragment extends Fragment {
-
     private RecyclerView recyclerView;
+    private TaskAdapter taskAdapter;
     private List<Task> taskList = new ArrayList<>();
     private List<Task> allTaskList = new ArrayList<>(); // Store the original list of tasks
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_tasks, container, false);
+
+        // Set RecyclerView
+        recyclerView = root.findViewById(R.id.volunteerTasksRecycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        // Use TaskUtils to load the tasks
+        taskList = TaskUtils.loadTasks();
+
+        // Save the original list of tasks
+        allTaskList.addAll(taskList);
+
+        taskAdapter = new TaskAdapter(taskList, requireContext());
+        recyclerView.setAdapter(taskAdapter);
 
         // Set spinners
         Spinner spinnerDistance = root.findViewById(R.id.spinnerDistance);
@@ -99,20 +113,40 @@ public class TasksFragment extends Fragment {
             dialog.show();
         });
 
-        // Set RecyclerView
-        recyclerView = root.findViewById(R.id.volunteerTasksRecycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        // Set SearchView for searching tasks by name
+        SearchView searchView = root.findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;   // Prevent enter pressed
+            }
 
-        // Use TaskUtils to load the tasks
-        taskList = TaskUtils.loadTasks();
-
-        // Save the original list of tasks
-        allTaskList.addAll(taskList);
-
-        TaskAdapter adapter = new TaskAdapter(taskList, requireContext());
-        recyclerView.setAdapter(adapter);
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterTasks(newText);  // Filter tasks when text changes
+                return false;
+            }
+        });
 
         return root;
+    }
+
+    private void filterTasks(String query) {
+        List<Task> filteredList = new ArrayList<>();
+
+        // Lowercase search text
+        String queryLowerCase = query.toLowerCase();
+
+        for (Task task : allTaskList) {
+            if (task.getTitle().toLowerCase().contains(queryLowerCase)) {
+                filteredList.add(task);
+            }
+        }
+
+        // Update taskAdapter
+        if (taskAdapter != null) {
+            taskAdapter.updateTaskList(filteredList);
+        }
     }
 
     // Filter tasks by type

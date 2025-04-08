@@ -48,11 +48,12 @@
     <string name="trust_score">Trust Score: 4.8 / 5</string>
     <string name="feedback_value">Feedback: You’re doing great!</string>
     <string name="notification_title">Notification</string>
-    <string name="notification_switch_text">Enable Task Reminders</string>
+    <string name="notification_switch_text">Open Reminders</string>
     <string name="upcoming_reminder">Upcoming Task Reminder:</string>
     <string name="task_details_link">Task details link</string>
     <string name="task_icon_description">Icon representing a task</string>
     <string name="toggle_arrow_description">Toggle visibility of section</string>
     <string name="feedback_icon_description">Icon representing feedback</string>
+    <string name="notification_icon_description">Icon representing notification</string>
 
 </resources>

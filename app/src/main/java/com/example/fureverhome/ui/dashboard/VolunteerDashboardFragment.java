@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,6 +33,27 @@ public class VolunteerDashboardFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_volunteer_dashboard, container, false);
 
+        // Initialize SearchView
+        androidx.appcompat.widget.SearchView searchView = rootView.findViewById(R.id.searchView);
+        searchView.setQueryHint("Search Tasks...");
+        
+        // Set up search functionality
+        searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // Handle search submit
+                filterTasks(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // Handle text change (real-time filtering)
+                filterTasks(newText);
+                return true;
+            }
+        });
+
         // Initialize RecyclerView
         recyclerView = rootView.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -38,12 +61,13 @@ public class VolunteerDashboardFragment extends Fragment {
         // Initialize task list and adapter
         taskList = new ArrayList<>();
         taskAdapter = new TaskAdapter(taskList);
+
         recyclerView.setAdapter(taskAdapter);
 
-        // Load sample tasks (you can replace this with real data)
+        // Load tasks from TaskUtils
         loadTasks();
 
-        // Set click listeners for My Tasks section and Feedback section
+        // Set click listeners for all section
         View tasksSection = rootView.findViewById(R.id.tasksSection);
         View feedbackSection = rootView.findViewById(R.id.feedbackSection);
 
@@ -57,6 +81,20 @@ public class VolunteerDashboardFragment extends Fragment {
 
         tasksToggleIcon.setOnClickListener(v -> toggleTasksSection());
         feedbackToggleIcon.setOnClickListener(v -> toggleFeedbackSection());
+
+        // Set notification Switch
+        Switch notificationSwitch = rootView.findViewById(R.id.notificationSwitch);
+
+        // Switch listener
+        notificationSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                // Show a Toast when it is turned ON
+                Toast.makeText(getContext(), "Reminder turned ON", Toast.LENGTH_SHORT).show();
+            } else {
+                // Show a Toast when it is turned OFF
+                Toast.makeText(getContext(), "Reminder turned OFF", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return rootView;
     }
@@ -95,7 +133,8 @@ public class VolunteerDashboardFragment extends Fragment {
         }
     }
 
-    // Load sample tasks (replace with real data source)
+
+    //Load tasks and filter
     private void loadTasks() {
         taskList.add(new DashboardTask("1", "Foster Care", "In Progress"));
         taskList.add(new DashboardTask("2", "Adoption Event Helper", "Completed"));
@@ -103,6 +142,25 @@ public class VolunteerDashboardFragment extends Fragment {
 
         // Notify adapter about data change
         taskAdapter.notifyDataSetChanged();
+    }
+
+    private void filterTasks(String query) {
+        List<DashboardTask> filteredList = new ArrayList<>();
+        
+        if (query == null || query.isEmpty()) {
+            filteredList.addAll(taskList);
+        } else {
+            String lowerCaseQuery = query.toLowerCase().trim();
+            for (DashboardTask task : taskList) {
+                if (task.getTitle().toLowerCase().contains(lowerCaseQuery) ||
+                    task.getStatus().toLowerCase().contains(lowerCaseQuery)) {
+                    filteredList.add(task);
+                }
+            }
+        }
+        
+        taskAdapter = new TaskAdapter(filteredList);
+        recyclerView.setAdapter(taskAdapter);
     }
 
     // Task Adapter for RecyclerView
@@ -203,5 +261,6 @@ public class VolunteerDashboardFragment extends Fragment {
         public String getStatus() {
             return status;
         }
+
     }
 }
