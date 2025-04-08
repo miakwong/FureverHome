@@ -23,6 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.tasks.TaskDetailsActivity" />
+        <activity android:name=".ui.events.EventGenerateActivity" />
+        <activity android:name=".ui.events.EventDetailsActivity"/>
     </application>
 
 </manifest>
