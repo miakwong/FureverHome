@@ -33,27 +33,6 @@ public class VolunteerDashboardFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_volunteer_dashboard, container, false);
 
-        // Initialize SearchView
-        androidx.appcompat.widget.SearchView searchView = rootView.findViewById(R.id.searchView);
-        searchView.setQueryHint("Search Tasks...");
-        
-        // Set up search functionality
-        searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                // Handle search submit
-                filterTasks(query);
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                // Handle text change (real-time filtering)
-                filterTasks(newText);
-                return true;
-            }
-        });
-
         // Initialize RecyclerView
         recyclerView = rootView.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
