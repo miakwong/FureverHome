@@ -24,6 +24,8 @@
         </activity>
         <activity android:name=".ui.shelter_management.AnimalListings" />
         <activity android:name=".ui.shelter_management.AnimalDetailActivity" />
+        <activity android:name=".ui.shelter_management.AnimalUpdateActivity" />
+        <activity android:name=".ui.shelter_management.AnimalAddActivity" />
         <activity android:name=".ui.tasks.TaskDetailsActivity" />
         <activity android:name=".ui.events.EventGenerateActivity" />
         <activity android:name=".ui.events.EventDetailsActivity"/>

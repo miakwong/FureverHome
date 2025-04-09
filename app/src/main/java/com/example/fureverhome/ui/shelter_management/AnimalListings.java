@@ -1,5 +1,6 @@
 package com.example.fureverhome.ui.shelter_management;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,6 +34,8 @@ public class AnimalListings extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private SearchView searchView;
+    private static final int UPDATE_ANIMAL_REQUEST_CODE = 1001;
+    private static final int ADD_ANIMAL_REQUEST_CODE = 1002;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,7 @@ public class AnimalListings extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
 
-        View drawerView = navigationView.getHeaderView(0); // or navigationView.getChildAt(0)
+        View drawerView = navigationView.getHeaderView(0);
         if (drawerView == null) drawerView = navigationView;
 
         Button applyBtn = drawerView.findViewById(R.id.applyFiltersButton);
@@ -52,7 +55,6 @@ public class AnimalListings extends AppCompatActivity {
             applyFilters();
             drawerLayout.closeDrawer(GravityCompat.START);
         });
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -83,13 +85,21 @@ public class AnimalListings extends AppCompatActivity {
         animalList.add(new Animal("Molly", "Dog", "Golden Retriever", "Yellow", "Large", 2, "Female", List.of(R.drawable.ic_molly), "Kelowna SPCA", "Pending", "An adorable girl"));
         animalList.add(new Animal("Bentley", "Cat", "short hair mix", "Grey and White", "Medium", 7, "Male", List.of(R.drawable.ic_bentley), "Peachland SPCA", "Adopted", "A playful young man"));
         animalList.add(new Animal("Poppy", "Snake", "Ball Python", "Brown and Black", "Medium", 14, "Female", List.of(R.drawable.ic_poppy), "Vernon SPCA", "Adopted", "An adventurous spirit"));
-        animalList.add(new Animal("rocky", "Dog", "Golden Retriever", "Yellow", "Large", 0, "Male",List.of(R.drawable.ic_rocky), "Vernon SPCA", "Available", "Playful and rambunctious"));
+        animalList.add(new Animal("rocky", "Dog", "Golden Retriever", "Yellow", "Large", 0, "Male", List.of(R.drawable.ic_rocky), "Vernon SPCA", "Available", "Playful and rambunctious"));
         animalList.add(new Animal("Sunny", "Horse", "Thoroughbred", "Red", "Large", 3, "Male", List.of(R.drawable.ic_sunny), "Kelowna Farm Rescue", "Available", "Calm and steady. Great for kids"));
         animalList.add(new Animal("Tux", "Cat", "short hair mix", "Black and White", "Medium", 1, "Male", List.of(R.drawable.ic_tux), "Vernon SPCA", "Pending", "Will make friends with your neighbours too"));
 
         filteredList.addAll(animalList);
-        adapter = new MyAdapter(getApplicationContext(), filteredList);
+
+        adapter = new MyAdapter(this, filteredList); // NOTE: Use 'this', not getApplicationContext()
         recyclerView.setAdapter(adapter);
+
+        // Now safely set the update click listener
+        adapter.setOnUpdateClickListener(animal -> {
+            Intent intent = new Intent(AnimalListings.this, AnimalUpdateActivity.class);
+            intent.putExtra("animal", animal);
+            startActivityForResult(intent, UPDATE_ANIMAL_REQUEST_CODE);
+        });
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -108,12 +118,9 @@ public class AnimalListings extends AppCompatActivity {
 
     private void applyFilters() {
         filteredList.clear();
+        View header = navigationView.getHeaderView(0);
+        if (header == null) header = navigationView;
 
-        // Access checkboxes from the NavigationView
-        View header = navigationView.getHeaderView(0); // or use getChildAt(0) if header isn't used
-        if (header == null) header = navigationView; // fallback
-
-        // --- Collect checked values ---
         Set<String> selectedSpecies = new HashSet<>();
         if (((CheckBox) header.findViewById(R.id.filter_species_dog)).isChecked()) selectedSpecies.add("dog");
         if (((CheckBox) header.findViewById(R.id.filter_species_cat)).isChecked()) selectedSpecies.add("cat");
@@ -153,49 +160,26 @@ public class AnimalListings extends AppCompatActivity {
         if (((CheckBox) header.findViewById(R.id.filter_Pending)).isChecked()) selectedStatus.add("pending");
         if (((CheckBox) header.findViewById(R.id.filter_Adopted)).isChecked()) selectedStatus.add("adopted");
 
-        // Age ranges
         boolean under1 = ((CheckBox) header.findViewById(R.id.filter_under_1)).isChecked();
         boolean age2to4 = ((CheckBox) header.findViewById(R.id.filter_2_to_4)).isChecked();
         boolean age5to8 = ((CheckBox) header.findViewById(R.id.filter_5_to_8)).isChecked();
         boolean age9plus = ((CheckBox) header.findViewById(R.id.filter_9_or_more)).isChecked();
 
-        // --- Filter list ---
         for (Animal animal : animalList) {
             boolean match = true;
+            if (!selectedSpecies.isEmpty() && !selectedSpecies.contains(animal.getSpecies().toLowerCase())) match = false;
+            if (!selectedSizes.isEmpty() && !selectedSizes.contains(animal.getSize().toLowerCase())) match = false;
+            if (!selectedColours.isEmpty() && !selectedColours.contains(animal.getColour().toLowerCase())) match = false;
+            if (!selectedGenders.isEmpty() && !selectedGenders.contains(animal.getGender().toLowerCase())) match = false;
+            if (!selectedLocations.isEmpty() && !selectedLocations.contains(animal.getLocation().toLowerCase())) match = false;
+            if (!selectedStatus.isEmpty() && !selectedStatus.contains(animal.getStatus().toLowerCase())) match = false;
 
-            if (!selectedSpecies.isEmpty() && !selectedSpecies.contains(animal.getSpecies().toLowerCase())) {
-                match = false;
-            }
-
-            if (!selectedSizes.isEmpty() && !selectedSizes.contains(animal.getSize().toLowerCase())) {
-                match = false;
-            }
-
-            if (!selectedColours.isEmpty() && !selectedColours.contains(animal.getColour().toLowerCase())) {
-                match = false;
-            }
-
-            if (!selectedGenders.isEmpty() && !selectedGenders.contains(animal.getGender().toLowerCase())) {
-                match = false;
-            }
-
-            if (!selectedLocations.isEmpty() && !selectedLocations.contains(animal.getLocation().toLowerCase())) {
-                match = false;
-            }
-
-            if (!selectedStatus.isEmpty() && !selectedStatus.contains(animal.getStatus().toLowerCase())) {
-                match = false;
-            }
-
-            // Age filtering
             int age = animal.getAge();
             if ((under1 || age2to4 || age5to8 || age9plus)) {
                 if (!(under1 && age <= 1 ||
                         age2to4 && age >= 2 && age <= 4 ||
                         age5to8 && age >= 5 && age <= 8 ||
-                        age9plus && age >= 9)) {
-                    match = false;
-                }
+                        age9plus && age >= 9)) match = false;
             }
 
             if (match) filteredList.add(animal);
@@ -203,5 +187,30 @@ public class AnimalListings extends AppCompatActivity {
 
         adapter.notifyDataSetChanged();
     }
-}
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            if (requestCode == UPDATE_ANIMAL_REQUEST_CODE) {
+                Animal updatedAnimal = (Animal) data.getSerializableExtra("updatedAnimal");
+                if (updatedAnimal != null) {
+                    for (int i = 0; i < animalList.size(); i++) {
+                        if (animalList.get(i).getName().equals(updatedAnimal.getName())) {
+                            animalList.set(i, updatedAnimal);
+                            break;
+                        }
+                    }
+                    applyFilters(); // Refresh filtered list too
+                }
+            } else if (requestCode == ADD_ANIMAL_REQUEST_CODE) { // Assuming you have a request code for add
+                Animal newAnimal = (Animal) data.getSerializableExtra("newAnimal");
+                if (newAnimal != null) {
+                    animalList.add(newAnimal);
+                    applyFilters(); // Update filtered and displayed lists
+                }
+            }
+        }
+    }
+}

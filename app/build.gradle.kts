@@ -48,4 +48,6 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation("androidx.appcompat:appcompat:1.3.1")
+    implementation("com.google.code.gson:gson:2.8.6")
 }
+
