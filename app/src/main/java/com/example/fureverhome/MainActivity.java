@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == RESULT_OK) {
                             Intent data = result.getData();
-                            // Handle the received result data
+
                         }
                     }
                 });
