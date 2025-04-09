@@ -186,6 +186,7 @@ public class AnimalListings extends AppCompatActivity {
         }
 
         adapter.notifyDataSetChanged();
+        applySearchFilter();
     }
 
     @Override
@@ -193,24 +194,63 @@ public class AnimalListings extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK) {
+
+
+
             if (requestCode == UPDATE_ANIMAL_REQUEST_CODE) {
+
                 Animal updatedAnimal = (Animal) data.getSerializableExtra("updatedAnimal");
+
                 if (updatedAnimal != null) {
                     for (int i = 0; i < animalList.size(); i++) {
+
                         if (animalList.get(i).getName().equals(updatedAnimal.getName())) {
+
                             animalList.set(i, updatedAnimal);
+
                             break;
+
                         }
+
                     }
                     applyFilters(); // Refresh filtered list too
+
                 }
+
             } else if (requestCode == ADD_ANIMAL_REQUEST_CODE) { // Assuming you have a request code for add
+
                 Animal newAnimal = (Animal) data.getSerializableExtra("newAnimal");
+
                 if (newAnimal != null) {
+
                     animalList.add(newAnimal);
+
                     applyFilters(); // Update filtered and displayed lists
+
                 }
             }
+
         }
+    }
+    private void applySearchFilter() {
+        String searchText = searchView.getQuery().toString().toLowerCase();
+        if (!searchText.isEmpty()) {
+            List<Animal> tempList = new ArrayList<>();
+            for (Animal animal : filteredList) {
+                if (animal.getName().toLowerCase().contains(searchText) ||
+                        animal.getSpecies().toLowerCase().contains(searchText) ||
+                        animal.getBreed().toLowerCase().contains(searchText) ||
+                        Integer.toString(animal.getAge()).contains(searchText) ||
+                        animal.getColour().toLowerCase().contains(searchText) ||
+                        animal.getGender().toLowerCase().contains(searchText) ||
+                        animal.getLocation().toLowerCase().contains(searchText) ||
+                        animal.getStatus().toLowerCase().contains(searchText)) {
+                    tempList.add(animal);
+                }
+            }
+            filteredList.clear();
+            filteredList.addAll(tempList);
+        }
+        adapter.notifyDataSetChanged();
     }
 }

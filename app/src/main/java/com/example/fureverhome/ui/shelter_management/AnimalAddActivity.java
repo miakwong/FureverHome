@@ -4,12 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
@@ -31,8 +29,10 @@ public class AnimalAddActivity extends AppCompatActivity {
         setContentView(R.layout.activity_animal_add);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            v.setPadding(insets.getInsets(WindowInsetsCompat.Type.systemBars()).left,
+                    insets.getInsets(WindowInsetsCompat.Type.systemBars()).top,
+                    insets.getInsets(WindowInsetsCompat.Type.systemBars()).right,
+                    insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom);
             return insets;
         });
 
@@ -50,7 +50,7 @@ public class AnimalAddActivity extends AppCompatActivity {
 
         Button saveButton = findViewById(R.id.saveButton);
         saveButton.setOnClickListener(v -> {
-            String id = UUID.randomUUID().toString(); // Generate unique ID
+            String id = UUID.randomUUID().toString();
             String name = editName.getText().toString().trim();
             String species = editSpecies.getText().toString().trim();
             String breed = editBreed.getText().toString().trim();
@@ -62,14 +62,12 @@ public class AnimalAddActivity extends AppCompatActivity {
             String status = editStatus.getText().toString().trim();
             String description = editDescription.getText().toString().trim();
 
-            // Placeholder image
             List<Integer> images = new ArrayList<>();
-            images.add(R.drawable.ic_imageplaceholder); // replace later if needed
+            images.add(R.drawable.ic_imageplaceholder); // Placeholder
 
             Animal newAnimal = new Animal(name, species, breed, colour, size, age, gender, images, location, status, description);
-            newAnimal.setId(id); // Set the unique ID
+            newAnimal.setId(id);
 
-            // Return it to AnimalListings
             Intent resultIntent = new Intent();
             resultIntent.putExtra("newAnimal", newAnimal);
             setResult(RESULT_OK, resultIntent);
