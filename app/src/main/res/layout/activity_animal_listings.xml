@@ -19,11 +19,12 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:titleTextColor="@android:color/white"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:title="Animal Listings"
-            app:navigationIcon="@drawable/ic_menu" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_menu"
+            app:title="Animal Listings" />
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView"
@@ -45,6 +46,17 @@
             android:clipToPadding="false"
             android:paddingBottom="20dp"
             android:scrollbars="vertical" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="332dp"
+            android:layout_marginTop="4dp"
+            android:text="Back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
