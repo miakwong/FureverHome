@@ -12,9 +12,18 @@ import com.example.fureverhome.R;
 
 public class MyViewHolder extends RecyclerView.ViewHolder {
 
-    ImageView imageView;
-    TextView nameView, speciesView, breedView, colourView, sizeView, ageView, genderView, locationView, statusView;
-    Button viewButton, updateButton;
+    public ImageView imageView;
+    public TextView nameView;
+    public TextView speciesView;
+    public TextView breedView;
+    public TextView colourView;
+    public TextView sizeView;
+    public TextView ageView;
+    public TextView genderView;
+    public TextView locationView;
+    public TextView statusView;
+    public Button viewButton;
+    public Button updateButton;
     public MyViewHolder(@NonNull View itemView) {
         super(itemView);
         imageView = itemView.findViewById(R.id.imageView);
