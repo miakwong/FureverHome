@@ -14,12 +14,18 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResult;
+
 
 import com.example.fureverhome.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private ActivityResultLauncher<Intent> animalAddLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +54,30 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+        animalAddLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == RESULT_OK) {
+                            Intent data = result.getData();
+                            // Handle the received result data
+                        }
+                    }
+                });
     }
 
     public void launchAnimalListings(View v){
         Intent i = new Intent(this, AnimalListings.class);
         startActivity(i);
     }
+
+    public void launchAnimalAdd(View v) {
+        Intent i = new Intent(this, com.example.fureverhome.ui.shelter_management.AnimalAddActivity.class);
+        animalAddLauncher.launch(i);
+    }
+
 
     @Override
     public boolean onSupportNavigateUp() {

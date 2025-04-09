@@ -35,6 +35,7 @@ public class AnimalListings extends AppCompatActivity {
     private NavigationView navigationView;
     private SearchView searchView;
     private static final int UPDATE_ANIMAL_REQUEST_CODE = 1001;
+    private static final int ADD_ANIMAL_REQUEST_CODE = 1002;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,16 +192,24 @@ public class AnimalListings extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == UPDATE_ANIMAL_REQUEST_CODE && resultCode == RESULT_OK) {
-            Animal updatedAnimal = (Animal) data.getSerializableExtra("updatedAnimal");
-            if (updatedAnimal != null) {
-                for (int i = 0; i < animalList.size(); i++) {
-                    if (animalList.get(i).getName().equals(updatedAnimal.getName())) {
-                        animalList.set(i, updatedAnimal);
-                        break;
+        if (resultCode == RESULT_OK) {
+            if (requestCode == UPDATE_ANIMAL_REQUEST_CODE) {
+                Animal updatedAnimal = (Animal) data.getSerializableExtra("updatedAnimal");
+                if (updatedAnimal != null) {
+                    for (int i = 0; i < animalList.size(); i++) {
+                        if (animalList.get(i).getName().equals(updatedAnimal.getName())) {
+                            animalList.set(i, updatedAnimal);
+                            break;
+                        }
                     }
+                    applyFilters(); // Refresh filtered list too
                 }
-                applyFilters(); // Refresh filtered list too
+            } else if (requestCode == ADD_ANIMAL_REQUEST_CODE) { // Assuming you have a request code for add
+                Animal newAnimal = (Animal) data.getSerializableExtra("newAnimal");
+                if (newAnimal != null) {
+                    animalList.add(newAnimal);
+                    applyFilters(); // Update filtered and displayed lists
+                }
             }
         }
     }

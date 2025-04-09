@@ -15,6 +15,7 @@ public class Animal implements Serializable {
     private String location;
     private String status;
     private String description;
+    private String id;
 
     public Animal(String name, String species, String breed, String colour, String size, int age,
                   String gender, List<Integer> images, String location, String status, String description) {
@@ -29,10 +30,14 @@ public class Animal implements Serializable {
         this.location = location;
         this.status = status;
         this.description = description;
+        this.id = "";
     }
 
     // --- Getters and Setters ---
 
+    public String getId() {return id;}
+
+    public void setId(String id) {this.id = id;}
     public String getName() { return name; }
     public String getSpecies() { return species; }
     public String getBreed() { return breed; }
