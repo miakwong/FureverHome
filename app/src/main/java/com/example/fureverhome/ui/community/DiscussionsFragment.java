@@ -6,13 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,10 +23,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DiscussionsFragment extends Fragment  {
-    private RecyclerView recyclerView;
-    private DiscussionAdapter discussionAdapter;
+    private RecyclerView recyclerView1, recyclerView2;
+
+    private DiscussionAdapter discussionAdapter1, discussionAdapter2;
     private List<Discussion> discussionList = new ArrayList<>();
     private List<Discussion> allDiscussionList = new ArrayList<>(); // Store the original list of discussions
+
+    private boolean isSyncingScroll = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_community, container, false);
@@ -42,79 +42,13 @@ public class DiscussionsFragment extends Fragment  {
         });
 
 
-        // Set spinners
-        Spinner spinnerDistance = root.findViewById(R.id.spinnerDistance);
-        Spinner spinnerPostingDate = root.findViewById(R.id.spinnerPostingDate);
-
-        // Distance Spinner
-        ArrayAdapter<String> distanceAdapter = new ArrayAdapter<>(
-                requireContext(),
-                android.R.layout.simple_spinner_item,
-                new String[] {"Distance", "≤ 5 km", "≤ 10 km"}
-        );
-        distanceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerDistance.setAdapter(distanceAdapter);
-
-        // Posting Date Spinner
-        ArrayAdapter<String> postingAdapter = new ArrayAdapter<>(
-                requireContext(),
-                android.R.layout.simple_spinner_item,
-                new String[] {"Posting Date", "Past 3 days", "Past week", "Past month"}
-        );
-        postingAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerPostingDate.setAdapter(postingAdapter);
-
-        // Filter setting
-        ImageButton filterButton = root.findViewById(R.id.filterButton);
-        filterButton.setOnClickListener(v -> {
-            // Inflate dialog layout
-            View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.discussion_filter_dialog, null);
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setView(dialogView);
-            AlertDialog dialog = builder.create();
-
-            // Buttons from discussion_filter_dialog
-            RadioGroup discussionTypeRadioGroup = dialogView.findViewById(R.id.discussionTypeRadioGroup);
-            Button okBtn = dialogView.findViewById(R.id.okButton);
-            Button resetBtn = dialogView.findViewById(R.id.resetButton);
-
-            // OK button
-            okBtn.setOnClickListener(btn -> {
-                int selectedRadioId = discussionTypeRadioGroup.getCheckedRadioButtonId();
-                String selectedDiscussionType = "";
-
-                if (selectedRadioId == R.id.radio_adoption) {
-                    selectedDiscussionType = "Adoption";
-                } else if (selectedRadioId == R.id.radio_seminar) {
-                    selectedDiscussionType = "Seminar";
-                } else if (selectedRadioId == R.id.radio_clinic) {
-                    selectedDiscussionType = "Clinic";
-                } else if (selectedRadioId == R.id.radio_workshop) {
-                    selectedDiscussionType = "Workshop";
-                } else if (selectedRadioId == R.id.radio_volunteer) {
-                    selectedDiscussionType = "Volunteer";
-                }
-
-
-                // Apply filter
-                filterTasksByType(selectedDiscussionType);
-                dialog.dismiss(); // Close dialog
-            });
-
-            // Reset Button
-            resetBtn.setOnClickListener(btn -> {
-                resetFilters(); // Reset to the original list of discussions
-                dialog.dismiss();
-            });
-
-            dialog.show();
-
-        });
-
 
         // Set RecyclerView
-        recyclerView = root.findViewById(R.id.discussionTasksRecycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView1 = root.findViewById(R.id.discussionTasksRecycler1);
+        recyclerView2 = root.findViewById(R.id.discussionTasksRecycler2);
+        recyclerView1.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView2.setLayoutManager(new LinearLayoutManager(getContext()));
+
 
         // Use DiscussionUtils to load the discussions
         discussionList = DiscussionUtils.loadDiscussions();
@@ -122,8 +56,53 @@ public class DiscussionsFragment extends Fragment  {
         // Save the original list of discussions
         allDiscussionList.addAll(discussionList);
 
-        discussionAdapter = new DiscussionAdapter(discussionList, requireContext());
-        recyclerView.setAdapter(discussionAdapter);
+        List<Discussion> list1 = new ArrayList<>();
+        List<Discussion> list2 = new ArrayList<>();
+
+        for (int i = 0; i < discussionList.size(); i++) {
+            if (i % 2 == 0) {
+                list1.add(discussionList.get(i));
+            } else {
+                list2.add(discussionList.get(i));
+            }
+        }
+
+        discussionAdapter1 = new DiscussionAdapter(list1, requireContext());
+        discussionAdapter2 = new DiscussionAdapter(list2, requireContext());
+
+
+        // 设置 layoutManager 为横向
+        LinearLayoutManager layoutManager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+
+        recyclerView1.setLayoutManager(layoutManager1);
+        recyclerView2.setLayoutManager(layoutManager2);
+
+        recyclerView1.setAdapter(discussionAdapter1);
+        recyclerView2.setAdapter(discussionAdapter2);
+
+        recyclerView1.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView rv, int dx, int dy) {
+                if (!isSyncingScroll) {
+                    isSyncingScroll = true;
+                    recyclerView2.scrollBy(dx, dy);
+                    isSyncingScroll = false;
+                }
+            }
+        });
+
+        recyclerView2.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView rv, int dx, int dy) {
+                if (!isSyncingScroll) {
+                    isSyncingScroll = true;
+                    recyclerView1.scrollBy(dx, dy);
+                    isSyncingScroll = false;
+                }
+            }
+        });
+
 
 
         // Set SearchView for searching discussions by name
@@ -145,54 +124,33 @@ public class DiscussionsFragment extends Fragment  {
     }
 
     private void filterDiscussions(String query) {
-        List<Discussion> filteredList = new ArrayList<>();
-
-        // Lowercase search text
+        List<Discussion> matchedList = new ArrayList<>();
         String queryLowerCase = query.toLowerCase();
 
         for (Discussion discussion : allDiscussionList) {
             if (discussion.getTitle().toLowerCase().contains(queryLowerCase)) {
-                filteredList.add(discussion);
+                matchedList.add(discussion);
             }
         }
 
-        // Update discussionAdapter
-        if (discussionAdapter != null) {
-            discussionAdapter.updateDiscussionList(filteredList);
-        }
-    }
-    // Filter tasks by type
-    private void filterTasksByType(String taskType) {
-        List<Discussion> filteredList = new ArrayList<>();
+        List<Discussion> filteredList1 = new ArrayList<>();
+        List<Discussion> filteredList2 = new ArrayList<>();
 
-        if (taskType == null || taskType.isEmpty()) {
-            // No filter applied, show all tasks
-            filteredList.addAll(allDiscussionList);
-        } else {
-            for (Discussion discussion : allDiscussionList) {
-                if (discussion.getType().equalsIgnoreCase(taskType)) {
-                    filteredList.add(discussion);
-                }
+        for (int i = 0; i < matchedList.size(); i++) {
+            if (i % 2 == 0) {
+                filteredList1.add(matchedList.get(i));
+            } else {
+                filteredList2.add(matchedList.get(i));
             }
         }
 
-        // Update the adapter with the filtered list
-        DiscussionAdapter adapter = (DiscussionAdapter) recyclerView.getAdapter();
-        if (adapter != null) {
-            adapter.updateDiscussionList(filteredList);
+        if (discussionAdapter1 != null) {
+            discussionAdapter1.updateDiscussionList(filteredList1);
+        }
+        if (discussionAdapter2 != null) {
+            discussionAdapter2.updateDiscussionList(filteredList2);
         }
     }
 
-    // Reset to show all discussions
-    private void resetFilters() {
-        // Reset filters, show all discussions
-        List<Discussion> resetList = new ArrayList<>(allDiscussionList);  // Make sure discussionList is not modified by filters
-
-        // Update the adapter with the full discussion list
-        DiscussionAdapter adapter = (DiscussionAdapter) recyclerView.getAdapter();
-        if (adapter != null) {
-            adapter.updateDiscussionList(resetList);  // Reset to original discussion list
-        }
-    }
 }
 

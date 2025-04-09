@@ -1,5 +1,7 @@
 package com.example.fureverhome.ui.dashboard;
 
+import static com.example.fureverhome.model.EventUtils.loadEvents;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,17 +22,23 @@ import com.example.fureverhome.R;
 import com.example.fureverhome.model.Pet;
 import com.example.fureverhome.ui.pets.PetAdapter;
 import com.example.fureverhome.ui.tasks.TaskDetailsActivity;
+import com.example.fureverhome.model.Event;
+import com.example.fureverhome.ui.events.EventAdapter;
+import com.example.fureverhome.model.EventUtils;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class VolunteerDashboardFragment extends Fragment {
 
-    private RecyclerView recyclerView, recyclerViewPets;
+    private RecyclerView recyclerView, recyclerViewPets, recyclerViewevent;
     private TaskAdapter taskAdapter;
     private List<DashboardTask> taskList;
     private List<Pet> petList;
+    private List<Event> eventList;
     private PetAdapter petAdapter;
+    private EventAdapter eventAdapter;
     // Views for My Pets, My Tasks, and Feedback
     private LinearLayout petsListContainer, tasksListContainer, feedbackContentContainer;
     private ImageView petsToggleIcon, tasksToggleIcon, feedbackToggleIcon;
@@ -64,6 +72,17 @@ public class VolunteerDashboardFragment extends Fragment {
 
         // Load sample pet data
         loadPets();
+
+        // RecyclerView for Pets
+        recyclerViewevent = rootView.findViewById(R.id.recyclerViewevent);
+        recyclerViewevent.setLayoutManager(new GridLayoutManager(getContext(), 3));
+
+        eventList = new ArrayList<>();
+        eventAdapter = new EventAdapter(eventList, requireContext());
+        recyclerViewevent.setAdapter(eventAdapter);
+
+        // Load sample pet data
+        loadEvents();
 
 
         // Set click listeners for all sections

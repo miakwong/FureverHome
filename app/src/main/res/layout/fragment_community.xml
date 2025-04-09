@@ -1,75 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:fillViewport="true">
 
-    <!-- Search -->
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:queryHint="Search Events..."
-        app:iconifiedByDefault="false"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <!-- Filter Buttons -->
-    <LinearLayout
-        android:id="@+id/filterLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintTop_toBottomOf="@id/searchView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageButton
-            android:id="@+id/generateButton"
-            android:layout_width="wrap_content"
+        <!-- Filter Buttons -->
+        <LinearLayout
+            android:id="@+id/filterLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/baseline_add_circle_24"
-            android:background="?attr/selectableItemBackgroundBorderless"/>
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+            <ImageButton
+                android:id="@+id/generateButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_add_circle_24"
+                android:background="?attr/selectableItemBackgroundBorderless"/>
+            <!-- Search -->
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:queryHint="Search Events..." />
 
 
+        </LinearLayout>
 
-        <Spinner
-            android:id="@+id/spinnerDistance"
-            android:layout_width="0dp"
+        <!-- Recycler Row -->
+        <LinearLayout
+            android:id="@+id/RecyclerLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginTop="12dp">
 
-        <Spinner
-            android:id="@+id/spinnerPostingDate"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/discussionTasksRecycler1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
+                android:layout_marginEnd="8dp"/>
 
-        <ImageButton
-            android:id="@+id/filterButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_filter"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/open_filter_dialog"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/discussionTasksRecycler2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"/>
+        </LinearLayout>
     </LinearLayout>
-
-    <!-- Task List -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/discussionTasksRecycler"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/filterLayout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

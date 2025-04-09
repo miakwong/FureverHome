@@ -27,6 +27,7 @@ public class DiscussionAdapter extends RecyclerView.Adapter<DiscussionAdapter.Di
         this.context = context;
     }
 
+
     @NonNull
     @Override
     public DiscussionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -42,7 +43,7 @@ public class DiscussionAdapter extends RecyclerView.Adapter<DiscussionAdapter.Di
         holder.icon.setImageResource(discussion.getImageId());
 
         //Click arrow to details page
-        holder.arrow.setOnClickListener(v -> {
+        holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, DiscussionDetailsActivity.class);
             intent.putExtra("discussion", discussion);
             context.startActivity(intent);
@@ -63,7 +64,6 @@ public class DiscussionAdapter extends RecyclerView.Adapter<DiscussionAdapter.Di
             title = itemView.findViewById(R.id.discussionTitle);
             time = itemView.findViewById(R.id.discussionTime);
             icon = itemView.findViewById(R.id.discussionImage);
-            arrow = itemView.findViewById(R.id.discussionArrow);
         }
     }
 
