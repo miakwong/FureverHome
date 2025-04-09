@@ -55,5 +55,9 @@
     <string name="toggle_arrow_description">Toggle visibility of section</string>
     <string name="feedback_icon_description">Icon representing feedback</string>
     <string name="notification_icon_description">Icon representing notification</string>
+    <string name="pets_icon_description">Icon representing pets</string>
+    <string name="my_pets_title">My Pets</string>
+    <string name="pet_image_description">Pet images</string>
+    <string name="close_botton">Close Button</string>
 
 </resources>

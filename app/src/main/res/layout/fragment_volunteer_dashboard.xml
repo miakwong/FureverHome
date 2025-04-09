@@ -38,6 +38,72 @@
                 android:layout_marginStart="8dp"/>
         </LinearLayout>
 
+        <!-- My Pets Section -->
+        <LinearLayout
+            android:id="@+id/petsSection"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Collapsible Header with Icon -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:background="@color/md_theme_light_surface"
+                android:clickable="true"
+                android:focusable="true">
+
+                <!-- Pets Icon -->
+                <ImageView
+                    android:id="@+id/petsIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_pet"
+                    android:contentDescription="@string/pets_icon_description"
+                    app:tint="@color/md_theme_light_onSurface" />
+
+                <!-- Pet Title -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/my_pets_title"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"/>
+
+                <!-- Toggle Arrow Icon -->
+                <ImageView
+                    android:id="@+id/petsToggleIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_arrow_up"
+                    android:contentDescription="@string/toggle_arrow_description"
+                    app:tint="@color/md_theme_light_onSurface"/>
+            </LinearLayout>
+
+            <!-- Pets List Container -->
+            <LinearLayout
+                android:id="@+id/petsListContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <!-- RecyclerView for pets -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewPets"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
         <!-- My Tasks Section -->
         <LinearLayout
             android:id="@+id/tasksSection"
