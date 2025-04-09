@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_events" />
     <fragment
         android:id="@+id/navigation_community"
-        android:name="com.example.fureverhome.ui.community.CommunityFragment"
+        android:name="com.example.fureverhome.ui.community.DiscussionsFragment"
         android:label="Community"
         tools:layout="@layout/fragment_community" />
     <fragment

@@ -1,4 +1,4 @@
-package com.example.fureverhome.ui.events;
+package com.example.fureverhome.ui.community;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,30 +17,27 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.SearchView;
 
 import com.example.fureverhome.R;
-import com.example.fureverhome.model.Event;
-import com.example.fureverhome.model.EventUtils;
-import com.example.fureverhome.model.Task;
-import com.example.fureverhome.ui.events.EventAdapter;
+import com.example.fureverhome.model.Discussion;
+import com.example.fureverhome.model.DiscussionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventsFragment extends Fragment  {
+public class DiscussionsFragment extends Fragment  {
     private RecyclerView recyclerView;
-    private EventAdapter eventAdapter;
-    private List<Event> eventList = new ArrayList<>();
-    private List<Event> allEventList = new ArrayList<>(); // Store the original list of tasks
+    private DiscussionAdapter discussionAdapter;
+    private List<Discussion> discussionList = new ArrayList<>();
+    private List<Discussion> allDiscussionList = new ArrayList<>(); // Store the original list of discussions
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_events, container, false);
+        View root = inflater.inflate(R.layout.fragment_community, container, false);
 
-        // Set event generate button
+        // Set discussion generate button
         ImageButton generateButton = root.findViewById(R.id.generateButton);
         generateButton.setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext(), EventGenerateActivity.class); // 改成你的页面类
+            Intent intent = new Intent(requireContext(), DiscussionGenerateActivity.class); // 改成你的页面类
             startActivity(intent);
         });
 
@@ -71,41 +68,42 @@ public class EventsFragment extends Fragment  {
         ImageButton filterButton = root.findViewById(R.id.filterButton);
         filterButton.setOnClickListener(v -> {
             // Inflate dialog layout
-            View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.event_filter_dialog, null);
+            View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.discussion_filter_dialog, null);
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setView(dialogView);
             AlertDialog dialog = builder.create();
 
-            // Buttons from task_filter_dialog
-            RadioGroup taskTypeRadioGroup = dialogView.findViewById(R.id.eventTypeRadioGroup);
+            // Buttons from discussion_filter_dialog
+            RadioGroup discussionTypeRadioGroup = dialogView.findViewById(R.id.discussionTypeRadioGroup);
             Button okBtn = dialogView.findViewById(R.id.okButton);
             Button resetBtn = dialogView.findViewById(R.id.resetButton);
 
             // OK button
             okBtn.setOnClickListener(btn -> {
-                int selectedRadioId = taskTypeRadioGroup.getCheckedRadioButtonId();
-                String selectedTaskType = "";
+                int selectedRadioId = discussionTypeRadioGroup.getCheckedRadioButtonId();
+                String selectedDiscussionType = "";
 
                 if (selectedRadioId == R.id.radio_adoption) {
-                    selectedTaskType = "Adoption";
+                    selectedDiscussionType = "Adoption";
                 } else if (selectedRadioId == R.id.radio_seminar) {
-                    selectedTaskType = "Seminar";
+                    selectedDiscussionType = "Seminar";
                 } else if (selectedRadioId == R.id.radio_clinic) {
-                    selectedTaskType = "Clinic";
+                    selectedDiscussionType = "Clinic";
                 } else if (selectedRadioId == R.id.radio_workshop) {
-                    selectedTaskType = "Workshop";
+                    selectedDiscussionType = "Workshop";
                 } else if (selectedRadioId == R.id.radio_volunteer) {
-                    selectedTaskType = "Volunteer";
+                    selectedDiscussionType = "Volunteer";
                 }
 
+
                 // Apply filter
-                filterTasksByType(selectedTaskType);
+                filterTasksByType(selectedDiscussionType);
                 dialog.dismiss(); // Close dialog
             });
 
             // Reset Button
             resetBtn.setOnClickListener(btn -> {
-                resetFilters(); // Reset to the original list of tasks
+                resetFilters(); // Reset to the original list of discussions
                 dialog.dismiss();
             });
 
@@ -115,30 +113,30 @@ public class EventsFragment extends Fragment  {
 
 
         // Set RecyclerView
-        recyclerView = root.findViewById(R.id.eventTasksRecycler);
+        recyclerView = root.findViewById(R.id.discussionTasksRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        // Use TaskUtils to load the tasks
-        eventList = EventUtils.loadEvents();
+        // Use DiscussionUtils to load the discussions
+        discussionList = DiscussionUtils.loadDiscussions();
 
-        // Save the original list of tasks
-        allEventList.addAll(eventList);
+        // Save the original list of discussions
+        allDiscussionList.addAll(discussionList);
 
-        eventAdapter = new EventAdapter(eventList, requireContext());
-        recyclerView.setAdapter(eventAdapter);
+        discussionAdapter = new DiscussionAdapter(discussionList, requireContext());
+        recyclerView.setAdapter(discussionAdapter);
 
 
-        // Set SearchView for searching tasks by name
+        // Set SearchView for searching discussions by name
         SearchView searchView = root.findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                return false;   // Prevent enter pressed
+                return false;   // Prdiscussion enter pressed
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                filterEvents(newText);  // Filter tasks when text changes
+                filterDiscussions(newText);  // Filter discussions when text changes
                 return false;
             }
         });
@@ -146,54 +144,54 @@ public class EventsFragment extends Fragment  {
         return root;
     }
 
-    private void filterEvents(String query) {
-        List<Event> filteredList = new ArrayList<>();
+    private void filterDiscussions(String query) {
+        List<Discussion> filteredList = new ArrayList<>();
 
         // Lowercase search text
         String queryLowerCase = query.toLowerCase();
 
-        for (Event event : allEventList) {
-            if (event.getTitle().toLowerCase().contains(queryLowerCase)) {
-                filteredList.add(event);
+        for (Discussion discussion : allDiscussionList) {
+            if (discussion.getTitle().toLowerCase().contains(queryLowerCase)) {
+                filteredList.add(discussion);
             }
         }
 
-        // Update taskAdapter
-        if (eventAdapter != null) {
-            eventAdapter.updateEventList(filteredList);
+        // Update discussionAdapter
+        if (discussionAdapter != null) {
+            discussionAdapter.updateDiscussionList(filteredList);
         }
     }
     // Filter tasks by type
     private void filterTasksByType(String taskType) {
-        List<Event> filteredList = new ArrayList<>();
+        List<Discussion> filteredList = new ArrayList<>();
 
         if (taskType == null || taskType.isEmpty()) {
             // No filter applied, show all tasks
-            filteredList.addAll(allEventList);
+            filteredList.addAll(allDiscussionList);
         } else {
-            for (Event event : allEventList) {
-                if (event.getEventType().equalsIgnoreCase(taskType)) {
-                    filteredList.add(event);
+            for (Discussion discussion : allDiscussionList) {
+                if (discussion.getType().equalsIgnoreCase(taskType)) {
+                    filteredList.add(discussion);
                 }
             }
         }
 
         // Update the adapter with the filtered list
-        EventAdapter adapter = (EventAdapter) recyclerView.getAdapter();
+        DiscussionAdapter adapter = (DiscussionAdapter) recyclerView.getAdapter();
         if (adapter != null) {
-            adapter.updateEventList(filteredList);
+            adapter.updateDiscussionList(filteredList);
         }
     }
 
-    // Reset to show all tasks
+    // Reset to show all discussions
     private void resetFilters() {
-        // Reset filters, show all tasks
-        List<Event> resetList = new ArrayList<>(allEventList);  // Make sure eventList is not modified by filters
+        // Reset filters, show all discussions
+        List<Discussion> resetList = new ArrayList<>(allDiscussionList);  // Make sure discussionList is not modified by filters
 
-        // Update the adapter with the full task list
-        EventAdapter adapter = (EventAdapter) recyclerView.getAdapter();
+        // Update the adapter with the full discussion list
+        DiscussionAdapter adapter = (DiscussionAdapter) recyclerView.getAdapter();
         if (adapter != null) {
-            adapter.updateEventList(resetList);  // Reset to original task list
+            adapter.updateDiscussionList(resetList);  // Reset to original discussion list
         }
     }
 }

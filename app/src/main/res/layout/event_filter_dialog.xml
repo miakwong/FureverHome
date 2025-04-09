@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@color/md_theme_light_surface"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Event Type"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:paddingBottom="12dp"/>
+
+    <RadioGroup
+        android:id="@+id/eventTypeRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/radio_seminar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seminar"/>
+
+        <RadioButton
+            android:id="@+id/radio_volunteer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Volunteer"/>
+
+        <RadioButton
+            android:id="@+id/radio_adoption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adoption"/>
+
+        <RadioButton
+            android:id="@+id/radio_workshop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Workshop"/>
+
+        <RadioButton
+            android:id="@+id/radio_clinic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Clinic"/>
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/resetButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset" />
+
+        <Button
+            android:id="@+id/okButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OK"
+            android:layout_marginStart="16dp"/>
+    </LinearLayout>
+</LinearLayout>

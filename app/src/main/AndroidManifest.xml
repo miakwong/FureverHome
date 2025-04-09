@@ -27,6 +27,8 @@
         <activity android:name=".ui.tasks.TaskDetailsActivity" />
         <activity android:name=".ui.events.EventGenerateActivity" />
         <activity android:name=".ui.events.EventDetailsActivity"/>
+        <activity android:name=".ui.community.DiscussionGenerateActivity" />
+        <activity android:name=".ui.community.DiscussionDetailsActivity"/>
     </application>
 
 </manifest>
