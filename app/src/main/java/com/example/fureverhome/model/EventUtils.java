@@ -16,6 +16,31 @@ public class EventUtils {
         eventList.add(new Event(
                 R.drawable.ic_pet, "1", "2025/04/19", "12:00", "2hrs", "Adoption Event", "Okanagan",
                         " Me", "Seminar", "Come", "2025/04/18"));
+        eventList.add(new Event(
+                R.drawable.ic_pet, "1", "2025/04/19", "12:00", "2hrs", "Adoption Event", "Okanagan",
+                " Me", "Seminar", "Come", "2025/04/18"));
+        eventList.add(new Event(
+                R.drawable.ic_pet, "1", "2025/04/19", "12:00", "2hrs", "Adoption Event", "Okanagan",
+                " Me", "Seminar", "Come", "2025/04/18"));
+        eventList.add(new Event(
+                R.drawable.ic_pet, "1", "2025/04/19", "12:00", "2hrs", "Adoption Event", "Okanagan",
+                " Me", "Seminar", "Come", "2025/04/18"));
+        eventList.add(new Event(
+                R.drawable.ic_pet, "1", "2025/04/19", "12:00", "2hrs", "Adoption Event", "Okanagan",
+                " Me", "Seminar", "Come", "2025/04/18"));
+        eventList.add(new Event(
+                R.drawable.ic_pet, "1", "2025/04/19", "12:00", "2hrs", "Adoption Event", "Okanagan",
+                " Me", "Seminar", "Come", "2025/04/18"));
+        eventList.add(new Event(
+                R.drawable.ic_pet, "1", "2025/04/19", "12:00", "2hrs", "Adoption Event", "Okanagan",
+                " Me", "Seminar", "Come", "2025/04/18"));
+        eventList.add(new Event(
+                R.drawable.ic_pet, "1", "2025/04/19", "12:00", "2hrs", "Adoption Event", "Okanagan",
+                " Me", "Seminar", "Come", "2025/04/18"));
+        eventList.add(new Event(
+                R.drawable.ic_pet, "1", "2025/04/19", "12:00", "2hrs", "Adoption Event", "Okanagan",
+                " Me", "Seminar", "Come", "2025/04/18"));
+
 
         List<Event> mergedList = new ArrayList<>();
         mergedList.addAll(eventList);
