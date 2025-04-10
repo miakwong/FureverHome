@@ -23,6 +23,8 @@ public class TaskDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_details);
 
+        Task task = (Task) getIntent().getSerializableExtra("task");
+
         // Bind views
         ImageView backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(v -> finish());
@@ -39,8 +41,28 @@ public class TaskDetailsActivity extends AppCompatActivity {
         descriptionText = findViewById(R.id.descriptionText);
         applyBtn = findViewById(R.id.applyButton);
 
-        // Get the full Task object from Intent
-        Task task = (Task) getIntent().getSerializableExtra("task");
+        if (task == null) {
+            // Try get data from Dashboard fallback
+            String taskId = getIntent().getStringExtra("taskId");
+
+            if (taskId != null) {
+                // You can replace this with real task lookup if needed
+                task = new Task(
+                        taskId,
+                        "Task from Dashboard",
+                        "Volunteer",
+                        "2025-04-09",
+                        R.drawable.ic_task,
+                        "2025-04-10",
+                        "2025-04-12",
+                        "2 days",
+                        "Local Shelter",
+                        "Dashboard Organizer",
+                        "This task was clicked from the dashboard.",
+                        "This task was clicked from the dashboard."
+                );
+            }
+        }
 
         if (task != null) {
             taskIcon.setImageResource(task.getImageResId());
@@ -62,5 +84,4 @@ public class TaskDetailsActivity extends AppCompatActivity {
             Toast.makeText(this, "Applied to task", Toast.LENGTH_SHORT).show();
             finish();
         });
-    }
-}
+    }}
