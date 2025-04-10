@@ -10,9 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fureverhome.R;
 import com.example.fureverhome.model.Task;
-import com.example.fureverhome.model.TaskUtils;
-
-import java.util.List;
 
 public class TaskDetailsActivity extends AppCompatActivity {
 
@@ -28,7 +25,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
 
         // Bind views
         ImageView backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(v -> finish()); // Go back to previous screen
+        backButton.setOnClickListener(v -> finish());
 
         taskIcon = findViewById(R.id.taskIcon);
         titleText = findViewById(R.id.titleText);
@@ -42,14 +39,8 @@ public class TaskDetailsActivity extends AppCompatActivity {
         descriptionText = findViewById(R.id.descriptionText);
         applyBtn = findViewById(R.id.applyButton);
 
-        // Get taskId from the Intent
-        String taskId = getIntent().getStringExtra("taskId");
-
-        // Load tasks (using TaskUtils)
-        List<Task> allTasks = TaskUtils.loadTasks();
-
-        // Find the task by ID
-        Task task = TaskUtils.getTaskById(allTasks, taskId);
+        // Get the full Task object from Intent
+        Task task = (Task) getIntent().getSerializableExtra("task");
 
         if (task != null) {
             taskIcon.setImageResource(task.getImageResId());
@@ -62,6 +53,9 @@ public class TaskDetailsActivity extends AppCompatActivity {
             locationText.setText(task.getLocation());
             organizerText.setText(task.getOrganizer());
             descriptionText.setText(task.getDescription());
+        } else {
+            Toast.makeText(this, "Failed to load task details", Toast.LENGTH_SHORT).show();
+            finish();
         }
 
         applyBtn.setOnClickListener(v -> {

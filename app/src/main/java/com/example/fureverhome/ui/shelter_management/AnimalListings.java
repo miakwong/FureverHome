@@ -56,6 +56,11 @@ public class AnimalListings extends AppCompatActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
         });
 
+        Button backButton = findViewById(R.id.button);
+        backButton.setOnClickListener(v -> {
+            finish();
+        });
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -91,7 +96,7 @@ public class AnimalListings extends AppCompatActivity {
 
         filteredList.addAll(animalList);
 
-        adapter = new MyAdapter(this, filteredList); // NOTE: Use 'this', not getApplicationContext()
+        adapter = new MyAdapter(this, filteredList);
         recyclerView.setAdapter(adapter);
 
         // Now safely set the update click listener
