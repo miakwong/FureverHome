@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit a Trust Score for Shelter A"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <RatingBar
+        android:id="@+id/rating_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize="0.5" />
+
+    <TextView
+        android:id="@+id/rating_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You're Rating: 0 Stars" />
+
+    <EditText
+        android:id="@+id/review_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Give More Details"
+        android:inputType="textMultiLine"
+        android:minLines="4" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/submit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_marginTop="16dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_back_to_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back to Profile"
+        android:layout_marginTop="16dp"/>
+
+
+
+</LinearLayout>
