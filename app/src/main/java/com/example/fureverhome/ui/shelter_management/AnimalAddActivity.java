@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
+import com.example.fureverhome.ui.dashboard.ShelterDashboardFragment;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +38,12 @@ public class AnimalAddActivity extends AppCompatActivity {
             return insets;
         });
 
+        Button backToDashboard = findViewById(R.id.backButton);
+        backToDashboard.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ShelterDashboardFragment.class);
+            startActivity(intent);
+        });
+
         // Link input fields
         editName = findViewById(R.id.editName);
         editSpecies = findViewById(R.id.editSpecies);
@@ -47,6 +55,13 @@ public class AnimalAddActivity extends AppCompatActivity {
         editLocation = findViewById(R.id.editLocation);
         editStatus = findViewById(R.id.editStatus);
         editDescription = findViewById(R.id.editDescription);
+
+        Button backButton = findViewById(R.id.backButton);
+        backToDashboard.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ShelterDashboardFragment.class);
+            startActivity(intent);
+            finish();
+        });
 
         Button saveButton = findViewById(R.id.saveButton);
         saveButton.setOnClickListener(v -> {
